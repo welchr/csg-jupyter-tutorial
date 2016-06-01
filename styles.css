@@ -1,0 +1,30 @@
+<style>
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
+  }
+  
+  ul {
+    line-height: 145%;
+    font-size: 90%;
+  }
+  
+  div.text_cell_render li {
+    margin-bottom: 1em;
+  }
+  
+  div.text_cell_render {
+    font-family: Computer Modern, "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    line-height: 145%;
+    font-size: 130%;
+    width: 90%;
+  }
+  
+  .CodeMirror {
+    font-family: "Source Code Pro", source-code-pro,Consolas, monospace;
+  }
+
+  .warning {
+    color: rgb( 240, 20, 20 )
+  }
+</style>
