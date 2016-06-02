@@ -6,6 +6,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
+<script>
+$(document).ready(function(){
+  $("div.code_cell:not(:has(div.output_wrapper))").hide();
+  $("div.input").hide();
+  $("div.output_prompt").text("");
+})
+</script>
+
 <style type="text/css">
     /*!
 *
@@ -11713,11 +11721,27 @@ div.CodeMirror span.CodeMirror-matchingbracket {
 body {
   overflow: visible;
   padding: 8px;
+  margin-left: 3em;
 }
 
 div#notebook {
   overflow: visible;
   border-top: none;
+  padding-top: 0;
+}
+
+div.container {
+  width: 1400px;
+  margin-left: 0;
+  margin-right: 0;
+
+  /* Get rid of weird shadow around container */
+  box-shadow: none !important;
+}
+
+/* Allows large pandas tables to be displayed entirely */
+div.output_subarea {
+  overflow-x: visible;
 }
 
 @media print {
@@ -11766,8 +11790,7 @@ div#notebook {
     <div class="container" id="notebook-container">
 
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="CSG-Jupyter-Notebook-Tutorial">CSG Jupyter Notebook Tutorial<a class="anchor-link" href="#CSG-Jupyter-Notebook-Tutorial">&#182;</a></h1>
@@ -11775,42 +11798,15 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">html</span>
-&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot;&gt;
-&lt;style&gt;
-h1.toc, h2.toc, h3.toc, h4.toc {
-  display: inline;
-}
-&lt;/style&gt;
-&lt;div class=&quot;toc&quot;&gt;&lt;/div&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 <div class="output_html rendered_html output_subarea ">
 <link rel="stylesheet" type="text/css" href="styles.css">
@@ -11829,8 +11825,7 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="What-is-the-Jupyter-notebook?">What is the Jupyter notebook?<a class="anchor-link" href="#What-is-the-Jupyter-notebook?">&#182;</a></h2>
@@ -11838,8 +11833,7 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A web-based notebook for performing data analysis, supporting multiple languages (primary language is Python, but R works as well.)</p>
@@ -11857,8 +11851,7 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="How-do-I-install-it?">How do I install it?<a class="anchor-link" href="#How-do-I-install-it?">&#182;</a></h2>
@@ -11866,8 +11859,7 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Using-miniconda/anaconda">Using miniconda/anaconda<a class="anchor-link" href="#Using-miniconda/anaconda">&#182;</a></h3>
@@ -11875,8 +11867,7 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is probably the easiest method of all, on all platforms.</p>
@@ -11888,8 +11879,7 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Install-jupyter">Install jupyter<a class="anchor-link" href="#Install-jupyter">&#182;</a></h4><div class="highlight"><pre><span></span><span class="c1"># If you added anaconda to your PATH during the install</span>
@@ -11903,8 +11893,7 @@ conda install jupyter
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Install-optional-packages">Install optional packages<a class="anchor-link" href="#Install-optional-packages">&#182;</a></h4><div class="highlight"><pre><span></span><span class="c1"># Substitute conda for ~/ananaconda2/bin/conda if conda is not on your PATH</span>
@@ -11915,8 +11904,7 @@ conda install numpy pandas rpy2 matplotlib seaborn bokeh
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Install-R-kernel">Install R kernel<a class="anchor-link" href="#Install-R-kernel">&#182;</a></h4><p>If you want to use R code in your notebooks natively (without the %Rpull rpy2 trick), you can install the IRkernel, which allows you to create notebooks for R.</p>
@@ -11928,8 +11916,7 @@ conda install numpy pandas rpy2 matplotlib seaborn bokeh
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Using-pip">Using pip<a class="anchor-link" href="#Using-pip">&#182;</a></h3>
@@ -11937,8 +11924,7 @@ conda install numpy pandas rpy2 matplotlib seaborn bokeh
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>pip is the python package manager, and it can be used to install python packages locally into your home directory.</p>
@@ -11948,8 +11934,7 @@ conda install numpy pandas rpy2 matplotlib seaborn bokeh
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Install-pip">Install pip<a class="anchor-link" href="#Install-pip">&#182;</a></h4>
@@ -11957,8 +11942,7 @@ conda install numpy pandas rpy2 matplotlib seaborn bokeh
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you don't already have pip (python package installer tool), run this:</p>
@@ -11971,8 +11955,7 @@ python ./get-pip.py --user
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Install-jupyter">Install jupyter<a class="anchor-link" href="#Install-jupyter">&#182;</a></h4>
@@ -11980,8 +11963,7 @@ python ./get-pip.py --user
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now you can install jupyter:</p>
@@ -11993,8 +11975,7 @@ pip install --user jupyter
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Install-optional-packages">Install optional packages<a class="anchor-link" href="#Install-optional-packages">&#182;</a></h4>
@@ -12002,8 +11983,7 @@ pip install --user jupyter
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For plotting/pushing objects to R, you'll need the <code>rpy2</code> package installed. You can install it to your own home directory with:</p>
@@ -12017,8 +11997,7 @@ pip install --user jupyter
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 
@@ -12026,8 +12005,7 @@ pip install --user jupyter
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="How-do-I-run-it?">How do I run it?<a class="anchor-link" href="#How-do-I-run-it?">&#182;</a></h2>
@@ -12035,8 +12013,7 @@ pip install --user jupyter
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="On-your-own-computer">On your own computer<a class="anchor-link" href="#On-your-own-computer">&#182;</a></h3><p>On Windows, there should be an icon on the desktop, or search for jupyter by hitting Win+S.</p>
@@ -12085,8 +12062,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>SECURITY NOTE</strong></p>
@@ -12095,8 +12071,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>When running the notebook on a remote server, you should set a password. Otherwise, someone could potentially connect to your notebook, and have an open python shell with your user privileges. Not good. First, generate a password, like so:</p>
@@ -12109,8 +12084,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now copy the hash  into your <code>~/.jupyter/jupyter_notebook_config.py</code> file:</p>
@@ -12124,8 +12098,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h2>
@@ -12133,8 +12106,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Keyboard-shortcuts">Keyboard shortcuts<a class="anchor-link" href="#Keyboard-shortcuts">&#182;</a></h3>
@@ -12142,8 +12114,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>These are really important to being able to use the notebook quickly. To see a pop-up of all keyboard shortcuts, click outside of a cell or press ESC (to get out of edit mode) and then press "h".</p>
@@ -12152,8 +12123,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Getting-help">Getting help<a class="anchor-link" href="#Getting-help">&#182;</a></h3>
@@ -12161,8 +12131,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Another important feature is to type something into a cell for which you need help with, and then end it with a ?. For example:</p>
@@ -12173,8 +12142,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Markdown-Cells">Markdown Cells<a class="anchor-link" href="#Markdown-Cells">&#182;</a></h2>
@@ -12182,8 +12150,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the notebook, you can have cells written in a markup language called <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>. It's a relatively simple language and is used for most README files on <a href="https://github.com/">Github</a>.</p>
@@ -12211,8 +12178,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Input:</strong></p>
@@ -12222,8 +12188,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Output:</strong></p>
@@ -12233,8 +12198,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sympy also works well with the Jupyter notebook, and will display its results inline and formatted. For example:</p>
@@ -12243,26 +12207,12 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">init_printing</span><span class="p">(</span><span class="n">use_latex</span><span class="o">=</span><span class="s1">&#39;mathjax&#39;</span><span class="p">)</span>
-
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x y&quot;</span><span class="p">)</span>
-<span class="n">solve</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area">
 
 
 <div class="output_latex output_subarea output_execute_result">
@@ -12276,8 +12226,7 @@ $$\left [ - i \sqrt{- \frac{1}{2} + \frac{\sqrt{5}}{2}}, \quad i \sqrt{- \frac{1
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Surprisingly this works for some large ugly matrices:</p>
@@ -12286,25 +12235,12 @@ $$\left [ - i \sqrt{- \frac{1}{2} + \frac{\sqrt{5}}{2}}, \quad i \sqrt{- \frac{1
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">m11</span><span class="p">,</span> <span class="n">m12</span><span class="p">,</span> <span class="n">m21</span><span class="p">,</span> <span class="n">m22</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;m11, m12, m21, m22&quot;</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="n">m11</span><span class="p">,</span> <span class="n">m12</span><span class="p">],[</span><span class="n">m21</span><span class="p">,</span> <span class="n">m22</span><span class="p">]])</span>
-
-<span class="n">A</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+<div class="output_area">
 
 
 <div class="output_latex output_subarea output_execute_result">
@@ -12318,8 +12254,7 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Code-cells">Code cells<a class="anchor-link" href="#Code-cells">&#182;</a></h2>
@@ -12327,8 +12262,7 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you created the notebook with a python kernel (the default), you can enter python code into any newly created cell:</p>
@@ -12337,24 +12271,12 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Enter code into a cell, and see the output after it. </span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-  <span class="k">print</span> <span class="n">i</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0
 1
@@ -12370,8 +12292,7 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>However, you can still run other languages within cells, such as bash, javascript, HTML, etc. For example:</p>
@@ -12380,23 +12301,12 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>%%bash 
-ls -l
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>total 900
 -rw-r--r-- 1 welchr welchr 783747 Jun  1 20:08 csg_jupyter_tutorial.ipynb
@@ -12412,33 +12322,12 @@ ls -l
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">html</span>
-&lt;style&gt;
-
-.double {
-  font-size: 48pt;
-  text-shadow: 2px 2px 0 white,
-               4px 4px 0 black;
-}
-
-&lt;/style&gt;
-
-&lt;p class=&quot;double&quot; style=&quot;margin: 50px&quot;&gt;Arbitrary HTML&lt;/p&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 <div class="output_html rendered_html output_subarea ">
 <style>
@@ -12461,64 +12350,16 @@ ls -l
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-
-<span class="kd">function</span> <span class="nx">notify</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span><span class="nx">title</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">body</span><span class="o">:</span> <span class="nx">text</span><span class="p">,</span>
-    <span class="nx">icon</span><span class="o">:</span> <span class="s2">&quot;https://d30y9cdsu7xlg0.cloudfront.net/png/18596-200.png&quot;</span>
-  <span class="p">}</span>
-  
-  <span class="c1">// Let&#39;s check if the browser supports notifications</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="s2">&quot;Notification&quot;</span> <span class="k">in</span> <span class="nb">window</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;This browser does not support desktop notification&quot;</span><span class="p">);</span>
-  <span class="p">}</span>
-  
-  <span class="c1">// Let&#39;s check whether notification permissions have already been granted</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">Notification</span><span class="p">.</span><span class="nx">permission</span> <span class="o">===</span> <span class="s2">&quot;granted&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// If it&#39;s okay let&#39;s create a notification</span>
-    <span class="kd">var</span> <span class="nx">notification</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Notification</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span><span class="nx">options</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Otherwise, we need to ask the user for permission</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">Notification</span><span class="p">.</span><span class="nx">permission</span> <span class="o">!==</span> <span class="s1">&#39;denied&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">Notification</span><span class="p">.</span><span class="nx">requestPermission</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">permission</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// If the user accepts, let&#39;s create a notification</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">permission</span> <span class="o">===</span> <span class="s2">&quot;granted&quot;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">notification</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Notification</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span><span class="nx">options</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">});</span>
-  <span class="p">}</span>
-
-  <span class="c1">// At last, if the user has denied notifications, and you </span>
-  <span class="c1">// want to be respectful there is no need to bother them any more.</span>
-<span class="p">}</span>
-
-<span class="nb">window</span><span class="p">.</span><span class="nx">notify</span> <span class="o">=</span> <span class="nx">notify</span>
-
-<span class="nx">notify</span><span class="p">(</span><span class="s2">&quot;This is a notification example&quot;</span><span class="p">,</span><span class="s2">&quot;Notification example&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 
-
-<div id="a532f624-55ee-46e8-bbd7-eb2702990538"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#a532f624-55ee-46e8-bbd7-eb2702990538');
 
 function notify(text,title) {
   var options = {
@@ -12564,35 +12405,16 @@ notify("This is a notification example","Notification example")
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Call javascript code from python</span>
-<span class="n">jscode</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">notify(&quot;Calling javascript notification from python&quot;,&quot;Test&quot;)</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="c1"># Run the code</span>
-<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s2">&quot;javascript&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="n">jscode</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 
-
-<div id="e54fcd0a-9c0f-46f9-a510-a26db375ef4a"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#e54fcd0a-9c0f-46f9-a510-a26db375ef4a');
 
 notify("Calling javascript notification from python","Test")
 
@@ -12606,8 +12428,7 @@ notify("Calling javascript notification from python","Test")
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Plotting">Plotting<a class="anchor-link" href="#Plotting">&#182;</a></h2>
@@ -12615,8 +12436,7 @@ notify("Calling javascript notification from python","Test")
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Python">Python<a class="anchor-link" href="#Python">&#182;</a></h3>
@@ -12624,8 +12444,7 @@ notify("Calling javascript notification from python","Test")
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Seaborn">Seaborn<a class="anchor-link" href="#Seaborn">&#182;</a></h4>
@@ -12633,8 +12452,7 @@ notify("Calling javascript notification from python","Test")
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="https://stanford.edu/~mwaskom/software/seaborn/api.html">Seaborn</a> is a plotting library for Python that uses matplotlib underneath the hood. It provides for a number of plotting types that don't exist in matplotlib.</p>
@@ -12643,32 +12461,12 @@ notify("Calling javascript notification from python","Test")
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kendalltau</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
-
-<span class="n">rs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="o">-.</span><span class="mi">5</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-
-<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hex&quot;</span><span class="p">,</span> <span class="n">stat_func</span><span class="o">=</span><span class="n">kendalltau</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#4CB391&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/net/snowwhite/home/welchr/.local/lib/python2.7/site-packages/numpy/lib/function_base.py:564: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
   n = np.zeros(bins, ntype)
@@ -12678,7 +12476,7 @@ notify("Calling javascript notification from python","Test")
 </div>
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 
 <div class="output_png output_subarea ">
@@ -13314,8 +13112,7 @@ IiIiqXAwERGRVDiYiIhIKhxMREQkFQ4mIiKSym8lSKKM/kKVngAAAABJRU5ErkJggg==
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Interactive-plotting-with-bokeh">Interactive plotting with bokeh<a class="anchor-link" href="#Interactive-plotting-with-bokeh">&#182;</a></h4>
@@ -13323,8 +13120,7 @@ IiIiqXAwERGRVDiYiIhIKhxMREQkFQ4mIiKSym8lSKKM/kKVngAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Bokeh is another interactive plotting library for python, albeit much younger and not quite as nice as plotly. The advantage is that it works locally, without having to send data to plotly and retrieve it each time you wish to construct a plot.</p>
@@ -13334,28 +13130,12 @@ IiIiqXAwERGRVDiYiIhIKhxMREQkFQ4mIiKSym8lSKKM/kKVngAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># This just keeps the &quot;Warning: BokehJS previously loaded&quot; message from appearing. </span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">bokeh</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">Figure</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="kn">import</span> <span class="nn">bokeh</span>
-  <span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="o">*</span>
-  <span class="n">output_notebook</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 <div class="output_html rendered_html output_subarea ">
 
@@ -13367,14 +13147,11 @@ IiIiqXAwERGRVDiYiIhIKhxMREQkFQ4mIiKSym8lSKKM/kKVngAAAABJRU5ErkJggg==
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 
-
-<div id="c4a33668-25e0-4ec1-8a37-d5e59e12f739"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 
 (function(global) {
   function now() {
@@ -13467,94 +13244,12 @@ var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">HoverTool</span><span class="p">,</span> <span class="n">ColumnDataSource</span>
-<span class="kn">from</span> <span class="nn">bokeh.sampledata.les_mis</span> <span class="kn">import</span> <span class="n">data</span>
-
-<span class="n">nodes</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;nodes&#39;</span><span class="p">]</span>
-<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nodes&#39;</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])]</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;links&#39;</span><span class="p">]:</span>
-    <span class="n">counts</span><span class="p">[</span><span class="n">link</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">],</span> <span class="n">link</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">link</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
-    <span class="n">counts</span><span class="p">[</span><span class="n">link</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">link</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">link</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
-
-<span class="n">colormap</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;#444444&quot;</span><span class="p">,</span> <span class="s2">&quot;#a6cee3&quot;</span><span class="p">,</span> <span class="s2">&quot;#1f78b4&quot;</span><span class="p">,</span> <span class="s2">&quot;#b2df8a&quot;</span><span class="p">,</span> <span class="s2">&quot;#33a02c&quot;</span><span class="p">,</span> <span class="s2">&quot;#fb9a99&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;#e31a1c&quot;</span><span class="p">,</span> <span class="s2">&quot;#fdbf6f&quot;</span><span class="p">,</span> <span class="s2">&quot;#ff7f00&quot;</span><span class="p">,</span> <span class="s2">&quot;#cab2d6&quot;</span><span class="p">,</span> <span class="s2">&quot;#6a3d9a&quot;</span>
-<span class="p">]</span>
-
-<span class="n">xname</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">yname</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">color</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">alpha</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">n2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nodes</span><span class="p">):</span>
-        <span class="n">xname</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n1</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
-        <span class="n">yname</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n2</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
-
-        <span class="n">a</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">/</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span>
-        <span class="n">alpha</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">n1</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">n2</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]:</span>
-            <span class="n">color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">colormap</span><span class="p">[</span><span class="n">n1</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">)</span>
-
-
-<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-        <span class="n">xname</span><span class="o">=</span><span class="n">xname</span><span class="p">,</span>
-        <span class="n">yname</span><span class="o">=</span><span class="n">yname</span><span class="p">,</span>
-        <span class="n">colors</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
-        <span class="n">alphas</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
-        <span class="n">count</span><span class="o">=</span><span class="n">counts</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Les Mis Occurrences&quot;</span><span class="p">,</span>
-    <span class="n">x_axis_location</span><span class="o">=</span><span class="s2">&quot;above&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;resize,hover,save&quot;</span><span class="p">,</span>
-    <span class="n">x_range</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">names</span><span class="p">)),</span> <span class="n">y_range</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
-<span class="n">p</span><span class="o">.</span><span class="n">plot_width</span> <span class="o">=</span> <span class="mi">800</span>
-<span class="n">p</span><span class="o">.</span><span class="n">plot_height</span> <span class="o">=</span> <span class="mi">800</span>
-
-<span class="n">p</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="s1">&#39;xname&#39;</span><span class="p">,</span> <span class="s1">&#39;yname&#39;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
-     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="s1">&#39;alphas&#39;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-
-<span class="n">p</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">grid_line_color</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">axis_line_color</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">major_tick_line_color</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">major_label_text_font_size</span> <span class="o">=</span> <span class="s2">&quot;10pt&quot;</span>
-<span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">major_label_standoff</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">p</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">major_label_orientation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span>
-
-<span class="n">hover</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">HoverTool</span><span class="p">))</span>
-<span class="n">hover</span><span class="o">.</span><span class="n">tooltips</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">([</span>
-    <span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">,</span> <span class="s1">&#39;@yname, @xname&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;@count&#39;</span><span class="p">),</span>
-<span class="p">])</span>
-
-<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>      <span class="c1"># show the plot</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 <div class="output_html rendered_html output_subarea ">
 
@@ -13649,7 +13344,7 @@ var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area">
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <p><code>&lt;Bokeh Notebook handle for <strong>In[13]</strong>&gt;</code></p>
@@ -13662,70 +13357,12 @@ var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-
-<span class="kn">from</span> <span class="nn">bokeh.sampledata.glucose</span> <span class="kn">import</span> <span class="n">data</span>
-<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">TOOLS</span> <span class="o">=</span> <span class="s2">&quot;crosshair,pan,wheel_zoom,box_zoom,reset,save,hover&quot;</span>
-
-<span class="n">day</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s1">&#39;2010-10-06&#39;</span><span class="p">]</span>
-<span class="n">highs</span> <span class="o">=</span> <span class="n">day</span><span class="p">[</span><span class="n">day</span><span class="p">[</span><span class="s1">&#39;glucose&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">]</span>
-<span class="n">lows</span> <span class="o">=</span> <span class="n">day</span><span class="p">[</span><span class="n">day</span><span class="p">[</span><span class="s1">&#39;glucose&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">80</span><span class="p">]</span>
-
-<span class="n">p2</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">x_axis_type</span><span class="o">=</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">)</span>
-
-<span class="n">p2</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
-  <span class="n">day</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_series</span><span class="p">(),</span> 
-  <span class="n">day</span><span class="p">[</span><span class="s1">&#39;glucose&#39;</span><span class="p">],</span>
-  <span class="n">line_color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
-  <span class="n">line_dash</span><span class="o">=</span><span class="s2">&quot;4 4&quot;</span><span class="p">,</span> 
-  <span class="n">line_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-  <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;glucose&quot;</span>
-<span class="p">)</span>
-
-<span class="n">high_source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-  <span class="n">glucose</span> <span class="o">=</span> <span class="n">highs</span><span class="p">[</span><span class="s1">&#39;glucose&#39;</span><span class="p">],</span>
-  <span class="n">datetime</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">highs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="p">))</span>
-
-<span class="n">low_source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
-  <span class="n">glucose</span> <span class="o">=</span> <span class="n">lows</span><span class="p">[</span><span class="s1">&#39;glucose&#39;</span><span class="p">],</span>
-  <span class="n">datetime</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">lows</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="p">))</span>
-
-
-<span class="n">p2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">highs</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">highs</span><span class="p">[</span><span class="s1">&#39;glucose&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="n">high_source</span><span class="p">)</span>
-<span class="n">p2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">lows</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lows</span><span class="p">[</span><span class="s1">&#39;glucose&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="n">low_source</span><span class="p">)</span>
-
-<span class="n">p2</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Glucose Range&quot;</span>
-<span class="n">p2</span><span class="o">.</span><span class="n">xgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid_line_color</span><span class="o">=</span><span class="bp">None</span>
-<span class="n">p2</span><span class="o">.</span><span class="n">ygrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid_line_alpha</span><span class="o">=</span><span class="mf">0.5</span>
-<span class="n">p2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Time&#39;</span>
-<span class="n">p2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Value&#39;</span>
-
-<span class="n">hover</span> <span class="o">=</span> <span class="n">p2</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">HoverTool</span><span class="p">))</span>
-<span class="n">hover</span><span class="o">.</span><span class="n">tooltips</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">([</span>
-  <span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="s1">&#39;@datetime&#39;</span><span class="p">),</span>
-  <span class="p">(</span><span class="s1">&#39;Glucose&#39;</span><span class="p">,</span><span class="s1">&#39;@glucose&#39;</span><span class="p">)</span>
-<span class="p">])</span>
-
-<span class="n">show</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 <div class="output_html rendered_html output_subarea ">
 
@@ -13820,7 +13457,7 @@ var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_area">
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <p><code>&lt;Bokeh Notebook handle for <strong>In[14]</strong>&gt;</code></p>
@@ -13833,8 +13470,7 @@ var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="R-plotting">R plotting<a class="anchor-link" href="#R-plotting">&#182;</a></h3>
@@ -13842,8 +13478,7 @@ var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Plotting-with-ggplot-or-lattice">Plotting with ggplot or lattice<a class="anchor-link" href="#Plotting-with-ggplot-or-lattice">&#182;</a></h4>
@@ -13851,35 +13486,13 @@ var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> rpy2.ipython
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Make a fake dataset. </span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Start with a data frame of fake data:</p>
@@ -13888,23 +13501,12 @@ var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># The dataset</span>
-<span class="n">df</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+<div class="output_area">
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -13979,46 +13581,15 @@ var element = $('#c4a33668-25e0-4ec1-8a37-d5e59e12f739');
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Shove the data into R</span>
-<span class="o">%</span><span class="k">Rpush</span> df
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span>R
-<span class="kn">library</span><span class="p">(</span>lattice<span class="p">)</span>
-<span class="c1"># Create a lattice plot. </span>
-
-trellis.par.set<span class="p">(</span><span class="s">&quot;fontsize&quot;</span><span class="p">,</span><span class="kt">list</span><span class="p">(</span>text<span class="o">=</span><span class="m">16</span><span class="p">,</span>points<span class="o">=</span><span class="m">10</span><span class="p">))</span>
-
-<span class="kp">print</span><span class="p">(</span>xyplot<span class="p">(</span>
-  y <span class="o">~</span> x<span class="p">,</span>
-  df<span class="p">,</span>
-  par.settings <span class="o">=</span> simpleTheme<span class="p">(</span>pch<span class="o">=</span><span class="m">20</span><span class="p">,</span>cex<span class="o">=</span><span class="m">1.50</span><span class="p">)</span>
-<span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 
 <div class="output_png output_subarea ">
@@ -14144,8 +13715,7 @@ CTRAUAINEJRAAwQl0ABBCTRAUAINEJRAAwT1/wG0T/kJeJ61BQAAAABJRU5ErkJggg==
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Plotting-with-rbokeh">Plotting with rbokeh<a class="anchor-link" href="#Plotting-with-rbokeh">&#182;</a></h4>
@@ -14153,8 +13723,7 @@ CTRAUAINEJRAAwQl0ABBCTRAUAINEJRAAwT1/wG0T/kJeJ61BQAAAABJRU5ErkJggg==
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>R has a port of bokeh called <a href="http://hafen.github.io/rbokeh/">rbokeh</a>.</p>
@@ -14202,8 +13771,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Including-media">Including media<a class="anchor-link" href="#Including-media">&#182;</a></h2>
@@ -14211,8 +13779,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can include images that have already been created elsewhere:</p>
@@ -14221,24 +13788,12 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images_etv5.png&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
+<div class="output_area">
 
 
 <div class="output_png output_subarea output_execute_result">
@@ -14254,8 +13809,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Creating-reports-from-a-notebook">Creating reports from a notebook<a class="anchor-link" href="#Creating-reports-from-a-notebook">&#182;</a></h2>
@@ -14263,8 +13817,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="With-code-cells-included">With code cells included<a class="anchor-link" href="#With-code-cells-included">&#182;</a></h3>
@@ -14272,8 +13825,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you don't mind code cells included in your HTML report, just go to the <strong>File</strong> menu, and go to <strong>Download as --&gt; HTML</strong>. You could also save as PDF and other formats.</p>
@@ -14282,8 +13834,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="With-code-cells-excluded">With code cells excluded<a class="anchor-link" href="#With-code-cells-excluded">&#182;</a></h3>
@@ -14291,8 +13842,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is slightly more involved. Apparently jupyter cannot enable this functionality by default due to patent issues.</p>
@@ -14317,8 +13867,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Executing-notebooks-offline-(not-in-a-browser)">Executing notebooks offline (not in a browser)<a class="anchor-link" href="#Executing-notebooks-offline-(not-in-a-browser)">&#182;</a></h2>
@@ -14326,8 +13875,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can execute an entire notebook without having to use your browser. This can be useful for long running notebooks, or when you might lose your browser connection.</p>
@@ -14346,8 +13894,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Helpful-hints">Helpful hints<a class="anchor-link" href="#Helpful-hints">&#182;</a></h2>
@@ -14355,8 +13902,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>The session seems to be locked up. What do I do now?</strong></p>
@@ -14404,8 +13950,7 @@ define(['base/js/namespace','base/js/events'], function(IPython, events) {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Other-resources">Other resources<a class="anchor-link" href="#Other-resources">&#182;</a></h2>
@@ -14413,8 +13958,7 @@ define(['base/js/namespace','base/js/events'], function(IPython, events) {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="https://github.com/jupyter/notebook/blob/master/docs/source/examples/Notebook/Examples%20and%20Tutorials%20Index.ipynb">Official Jupyter notebook tutorials</a></p>
@@ -14425,76 +13969,16 @@ define(['base/js/namespace','base/js/events'], function(IPython, events) {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-
-<span class="nx">requirejs</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
-  <span class="nx">enforceDefine</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;lodash&quot;</span><span class="o">:</span> <span class="s2">&quot;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.3.0/lodash.min&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;underscore.string&quot;</span><span class="o">:</span> <span class="s2">&quot;https://cdnjs.cloudflare.com/ajax/libs/underscore.string/3.0.3/underscore.string&quot;</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-
-<span class="nx">require</span><span class="p">([</span><span class="s2">&quot;lodash&quot;</span><span class="p">,</span><span class="s2">&quot;underscore.string&quot;</span><span class="p">],</span><span class="kd">function</span><span class="p">(</span><span class="nx">_</span><span class="p">,</span><span class="nx">_s</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Creating table of contents..&quot;</span><span class="p">)</span>
-  
-  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="s2">&quot;&lt;div style=&#39;padding-bottom: 1em&#39;&gt;&lt;span style=&#39;font-size: 18pt; vertical-align: middle;&#39;&gt;%s&lt;/span&gt;&lt;%s class=&#39;toc&#39;&gt;&lt;a href=&#39;#%s&#39;&gt;%s&lt;/a&gt;&lt;/%s&gt;&lt;/div&gt;&quot;</span>
-  
-  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;div.toc&quot;</span><span class="p">).</span><span class="nx">empty</span><span class="p">()</span>
-  
-  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;h1:not(.toc),h2:not(.toc),h3:not(.toc),h4:not(.toc)&quot;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;¶&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nx">_s</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span><span class="s2">&quot;Keyboard shortcut&quot;</span><span class="p">))</span> <span class="p">{</span>
-      <span class="k">return</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nx">_s</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">text</span><span class="p">,</span><span class="s2">&quot;Contents&quot;</span><span class="p">))</span> <span class="p">{</span>
-      <span class="k">return</span>
-    <span class="p">}</span>
-
-    <span class="kd">var</span> <span class="nx">slug</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">ind</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;tagName&quot;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-    
-    <span class="kd">var</span> <span class="nx">htag</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&quot;tagName&quot;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
-    
-    <span class="k">if</span> <span class="p">(</span><span class="nx">ind</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> 
-      <span class="kd">var</span> <span class="nx">dashes</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">times</span><span class="p">(</span><span class="nx">ind</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="s2">&quot;&amp;nbsp;&amp;nbsp;&quot;</span><span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
-
-<span class="c1">//       if (ind != 1) {</span>
-<span class="c1">//         dashes = dashes + &quot;•&quot;;</span>
-<span class="c1">//       }</span>
-
-      <span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="nx">_s</span><span class="p">.</span><span class="nx">sprintf</span><span class="p">(</span><span class="nx">template</span><span class="p">,</span><span class="nx">dashes</span><span class="p">,</span><span class="nx">htag</span><span class="p">,</span><span class="nx">slug</span><span class="p">,</span><span class="nx">text</span><span class="p">,</span><span class="nx">htag</span><span class="p">);</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span>
-
-      <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;div.toc&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
-<span class="p">})()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 
-
-<div id="cfce6d2b-ec85-48b3-a192-cd05788e0bb7"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#cfce6d2b-ec85-48b3-a192-cd05788e0bb7');
 
 requirejs.config({
   enforceDefine: true,
@@ -14552,42 +14036,16 @@ require(["lodash","underscore.string"],function(_,_s) {
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-
-<span class="c1">// Some quick javascript for getting rid of the red STDERR message boxes on the page. </span>
-
-<span class="c1">// requirejs.config({</span>
-<span class="c1">//   enforceDefine: true,</span>
-<span class="c1">//   &quot;paths&quot;: {</span>
-<span class="c1">//     &quot;jquery&quot;: &quot;http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min&quot;</span>
-<span class="c1">//   }</span>
-<span class="c1">// })</span>
-
-<span class="c1">// require([&quot;jquery&quot;],function(jquery) {</span>
-<span class="c1">//   console.log(jquery(&quot;div.output_stderr&quot;).parent(&quot;div.output_area&quot;).hide())</span>
-<span class="c1">// })</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
 
 
-
-<div id="c1c098c1-5eef-46a1-8407-b4fdc52ee0bd"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#c1c098c1-5eef-46a1-8407-b4fdc52ee0bd');
 
 // Some quick javascript for getting rid of the red STDERR message boxes on the page. 
 
