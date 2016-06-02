@@ -1,5 +1,19 @@
 # A short tutorial on using the Jupyter notebook
 
+This is a very brief introduction to the Jupyter notebook, mainly
+targeted at CSG users. 
+
+I've tried to keep this document up to date with contributions from
+others. If you have something you would like to add, please feel free to
+either email me directly, or simply fork this repo / make changes /
+submit a pull request. 
+
+Thank you to the following folks for their help in improving this
+tutorial: 
+
+* Daniel Taliun
+* Lars Fritsche
+
 ## Downloading
 
 Just do the usual: 
