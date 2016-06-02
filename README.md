@@ -37,7 +37,7 @@ cells)](https://rawcdn.githack.com/welchr/csg-jupyter-tutorial/master/csg_jupyte
 [Rendered output (no code
 cells)](https://rawcdn.githack.com/welchr/csg-jupyter-tutorial/master/csg_jupyter_tutorial_nocode.html)
 
-# Creating HTML from notebook
+## Creating HTML from notebook
 
 Use the `build_html.sh` script. You'll also need to copy the template
 files (.tpl extension, included in the repository) to the appropriate
