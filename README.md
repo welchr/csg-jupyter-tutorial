@@ -29,3 +29,11 @@ Note that if you open the `.ipynb` file in github, some of it will
 render, but many things will not work quite right. Best to download and
 try it yourself. 
 
+## Quick view
+
+[Rendered output (including code
+cells)](https://rawcdn.githack.com/welchr/csg-jupyter-tutorial/master/csg_jupyter_tutorial.html)
+
+[Rendered output (no code
+cells)](https://rawcdn.githack.com/welchr/csg-jupyter-tutorial/master/csg_jupyter_tutorial_nocode.html)
+
