@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>csg_jupyter_tutorial</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>csg_jupyter_tutorial</title><script src="https://unpkg.com/jupyter-js-widgets@2.0.*/dist/embed.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -13,8 +11,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1109,7 +1107,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2538,7 +2535,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3029,7 +3025,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8760,6 +8755,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8962,8 +8960,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8986,6 +8990,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9122,6 +9136,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9211,6 +9228,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9255,6 +9275,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9551,6 +9574,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9571,11 +9595,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11246,7 +11265,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11558,6 +11577,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11571,6 +11591,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11631,8 +11654,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11643,9 +11668,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11696,14 +11723,17 @@ mainly to be overridden in profile/static/custom/custom.css
 This will always be an empty file in IPython
 */
 
+div.cell.border-box-sizing.code_cell.running {
+  border: 1px dashed orange;
+}
+
 .container {
-  width: 80%;
+  width: 95%;
 }
 
 div.CodeMirror span.CodeMirror-matchingbracket {
   color:red;
 }
-
 
     </style>
 
@@ -11718,9 +11748,7 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}
-
-@media print {
+}@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11741,7 +11769,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11765,8 +11793,7 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11774,8 +11801,7 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11785,8 +11811,7 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11799,7 +11824,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">html</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
 &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;styles.css&quot;&gt;
 &lt;style&gt;
 h1.toc, h2.toc, h3.toc, h4.toc {
@@ -11817,7 +11842,11 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 
 <div class="output_html rendered_html output_subarea ">
 <link rel="stylesheet" type="text/css" href="styles.css">
@@ -11835,8 +11864,7 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11859,8 +11887,7 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11894,57 +11921,21 @@ h1.toc, h2.toc, h3.toc, h4.toc {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="How-do-I-install-it?">How do I install it?<a class="anchor-link" href="#How-do-I-install-it?">&#182;</a></h2><h3 id="Using-miniconda/anaconda">Using miniconda/anaconda<a class="anchor-link" href="#Using-miniconda/anaconda">&#182;</a></h3><p>This is probably the easiest method of all, on all platforms.</p>
-<p>You can download the relevant installer for Windows, OSX, and Linux here:</p>
-<p><a href="https://www.continuum.io/downloads">https://www.continuum.io/downloads</a></p>
-<p><strong> WARNING </strong>: the installer will ask if you want to put Anaconda's packages/binaries on your PATH. If you only want to use Anaconda for jupyter related things, but leave your existing R installation as the primary one (when you type R at the terminal), you should say <strong>NO</strong>.</p>
-<h4 id="Install-anaconda">Install anaconda<a class="anchor-link" href="#Install-anaconda">&#182;</a></h4><p>You'll need to download the appropriate script from the downloads page above, and then execute it, for example on Linux (like our servers):</p>
-<div class="highlight"><pre><span></span><span class="c1"># Example of how to download/install Anaconda</span>
-<span class="c1"># You should replace the link/script below with the one obtained on the downloads page </span>
-wget http://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh
-bash Anaconda2-4.0.0-Linux-x86_64.sh
-</pre></div>
-<h4 id="Install-jupyter">Install jupyter<a class="anchor-link" href="#Install-jupyter">&#182;</a></h4><div class="highlight"><pre><span></span><span class="c1"># If you added anaconda to your PATH during the install</span>
-conda install jupyter
+<h2 id="How-do-I-install-it?">How do I install it?<a class="anchor-link" href="#How-do-I-install-it?">&#182;</a></h2><p>Follow the instructions here on getting setup with either miniconda or linuxbrew:</p>
+<p><a href="https://github.com/statgen/csg-python">https://github.com/statgen/csg-python</a></p>
+<p>If you're unsure of which to pick or need a quick answer, go with miniconda.</p>
+<p>Once you've installed miniconda, you can simply do:</p>
 
-<span class="c1"># If you didn&#39;t</span>
-~/anaconda2/bin/conda install jupyter
-</pre></div>
-<h4 id="Install-optional-packages">Install optional packages<a class="anchor-link" href="#Install-optional-packages">&#182;</a></h4><div class="highlight"><pre><span></span><span class="c1"># Substitute conda for ~/ananaconda2/bin/conda if conda is not on your PATH</span>
-conda install numpy pandas rpy2 matplotlib seaborn bokeh
-</pre></div>
-<h4 id="Install-R-kernel">Install R kernel<a class="anchor-link" href="#Install-R-kernel">&#182;</a></h4><p>If you want to use R code in your notebooks natively (without the %Rpull rpy2 trick), you can install the IRkernel, which allows you to create notebooks for R.</p>
-
-<pre><code>conda install -c r r-irkernel</code></pre>
-<p>Now, when you start the jupyter notebook server, you should be able to select "R" as well as "Python" when creating new notebooks.</p>
-<h3 id="Using-pip">Using pip<a class="anchor-link" href="#Using-pip">&#182;</a></h3><p>pip is the python package manager, and it can be used to install python packages locally into your home directory.</p>
-<p>Unfortunately, it can be somewhat of a pain to force pip not to use system installed python packages, even with virtualenvs.</p>
-<h4 id="Install-pip">Install pip<a class="anchor-link" href="#Install-pip">&#182;</a></h4><p>If you don't already have pip (python package installer tool), run this:</p>
-<div class="highlight"><pre><span></span>curl https://bootstrap.pypa.io/get-pip.py
-python ./get-pip.py --user
-</pre></div>
-<p>This installs pip, along with its dependencies, into <code>~/.local/</code>.</p>
-<h4 id="Install-jupyter">Install jupyter<a class="anchor-link" href="#Install-jupyter">&#182;</a></h4><p>Now you can install jupyter:</p>
-<div class="highlight"><pre><span></span><span class="c1"># The --user flag tells pip to install into your home directory under ~/.local/</span>
-pip install --user jupyter
-</pre></div>
-<h4 id="Install-optional-packages">Install optional packages<a class="anchor-link" href="#Install-optional-packages">&#182;</a></h4><p>For plotting/pushing objects to R, you'll need the <code>rpy2</code> package installed. You can install it to your own home directory with:</p>
-<div class="highlight"><pre><span></span>pip install --user rpy2
-</pre></div>
-<p>For plotting with python, you would install:</p>
-<div class="highlight"><pre><span></span>pip install --user matplotlib seaborn bokeh
-</pre></div>
+<pre><code>conda install jupyter</code></pre>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11952,65 +11943,72 @@ pip install --user jupyter
 <p>On OSX or Linux, you can type the following in a terminal:</p>
 <div class="highlight"><pre><span></span>jupyter notebook <span class="p">&amp;</span>
 </pre></div>
-<p>What's happening when I do this?</p>
-<div style="margin-right: auto"><img src="jupyter_diagram_local.png"></div><h3 id="On-a-remote-server-(like-snowwhite,-dumbo,-etc.)">On a remote server (like snowwhite, dumbo, etc.)<a class="anchor-link" href="#On-a-remote-server-(like-snowwhite,-dumbo,-etc.)">&#182;</a></h3><h4 id="SSH-port-forwarding">SSH port forwarding<a class="anchor-link" href="#SSH-port-forwarding">&#182;</a></h4><p>This method is more difficult, but nicer if you find that you will want to reconnect to the notebook server often. To do this, you can setup an SSH tunnel to the remote server. The setup ends up looking like the following:</p>
-<div style="margin-right: auto"><img src="jupyter_diagram_remote.png"></div><p>To create a quick tunnel just to test that you can get things working, run this on your local machine (desktop, laptop, etc.):</p>
-<div class="highlight"><pre><span></span><span class="c1"># Pick a random port number for the tunnel.  </span>
-<span class="c1"># Let&#39;s say 8888 for this example as the tunnel port. This is what you&#39;ll use in your browser. </span>
-<span class="c1"># The port should be a random number &gt; 1024 and &lt; 65535. </span>
-ssh -N -L 8888:localhost:8888 user@machine.sph.umich.edu
+<p>A browser window should open, and you'll be able to see the jupyter notebook server running on your computer.</p>
+<h3 id="On-a-remote-server-(like-snowwhite,-dumbo,-etc.)">On a remote server (like snowwhite, dumbo, etc.)<a class="anchor-link" href="#On-a-remote-server-(like-snowwhite,-dumbo,-etc.)">&#182;</a></h3><h4 id="Remote-kernel-approach">Remote kernel approach<a class="anchor-link" href="#Remote-kernel-approach">&#182;</a></h4><p>This is the simplest approach, but also the least well tested. Your mileage may vary.</p>
+<p>Install the <code>remote_ikernel</code> package:</p>
+<div class="highlight"><pre><span></span>pip3 install remote_ikernel
 </pre></div>
-<p>Leave that command running on your local computer (or background it by putting <code>&amp;</code> at the end.)</p>
-<p>Make sure you've started the jupyter notebook server on machine.sph.umich.edu (whichever head node). If you chose <code>--port 8888</code>, then use 8888 in the command above.</p>
-<p>Now try opening your browser to <a href="http://localhost:8888/">http://localhost:8888/</a> - you should see the interface appear, but now it will be connected to the jupyter notebook server running remotely on the server.</p>
-<p>Sometimes, ssh will disconnect randomly, and it doesn't restore the connection automatically. For that, you can use autossh. First, install autossh:</p>
-<div class="highlight"><pre><span></span><span class="c1"># For Linux (if you&#39;re on your own linux machine, not our servers)</span>
-sudo apt-get install autossh
-
-<span class="c1"># For OSX</span>
-brew install autossh
-
-<span class="c1"># For Windows</span>
-<span class="c1"># Use cygwin - the package manager has autossh.</span>
+<p>And then add a remote kernel, for example on snowwhite:</p>
+<div class="highlight"><pre><span></span>remote_ikernel manage --add <span class="se">\</span>
+    --kernel_cmd<span class="o">=</span><span class="s2">&quot;ipython3 kernel -f {connection_file}&quot;</span> <span class="se">\</span>
+    --name<span class="o">=</span><span class="s2">&quot;Python3 (snowwhite)&quot;</span> --interface<span class="o">=</span>ssh <span class="se">\</span>
+    --host<span class="o">=</span>welchr@snowwhite.sph.umich.edu
 </pre></div>
-<p>Setting up the tunnel, now using autossh instead:</p>
-<div class="highlight"><pre><span></span><span class="c1"># 21325 is the monitoring port autossh uses to make sure the connection is still connected. </span>
-<span class="c1"># Again, random number 1024 &lt; x &lt; 65535. </span>
-autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8888 user@machine.sph.umich.edu
-</pre></div>
-<p>For this method, you also need to create an SSH key (the <code>-i .ssh/id_rsa</code> part in the cmd above.) There are many tutorials out there for creating SSH keys (such as <a href="https://help.ubuntu.com/community/SSH/OpenSSH/Keys">this one</a>). Note that you might want to create a better name for your key than <code>id_rsa</code> - maybe name it after the server you're connecting to, like <code>snowwhite</code>.</p>
-<p>On Windows, if you want to use your ssh key for PuTTY, or Pageant (ssh agent), you'll need one additional step - use PuTTYgen to convert the key to the .ppk format that PuTTY needs. PuTTY can also setup <a href="http://howto.ccs.neu.edu/howto/windows/ssh-port-tunneling-with-putty/">SSH tunnels</a>, but you're better off getting autossh + cygwin and using the method above, since autossh automatically watches the tunnel and re-connects if the connection terminates for any reason.</p>
-<p>Now, after all of that, you can open your browser (on your local machine) to <a href="http://localhost:8888/">http://localhost:8888/</a>, and see your notebook server. Note that now, when you execute <strong>code</strong>, it runs server-side, not locally on your local machine! Really cool.</p>
-<p><strong>SECURITY NOTE</strong></p>
+<p>Now, when you go to create a new notebook, you should see your remote kernel in the list.</p>
+<h4 id="SSH-tunneling-approach">SSH tunneling approach<a class="anchor-link" href="#SSH-tunneling-approach">&#182;</a></h4><ol>
+<li><p>Setup a jupyter notebook password</p>
 <p>When running the notebook on a remote server, you should set a password. Otherwise, someone could potentially connect to your notebook, and have an open python shell with your user privileges. Not good. First, generate a password, like so:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">notebook.auth</span> <span class="kn">import</span> <span class="n">passwd</span>
-<span class="n">passwd</span><span class="p">()</span>
+ <span class="n">passwd</span><span class="p">()</span>
 </pre></div>
 <p>You should end up with a password hash that looks something like a random string, for example: <code>'sha1:2a12986a580e:f5830338dbdf89412fe1b94e5342c369e8e41819'</code></p>
 <p>Now copy the hash  into your <code>~/.jupyter/jupyter_notebook_config.py</code> file:</p>
-<div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s1">u&#39;&lt;copy string from above&gt;&#39;</span>
+<div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&lt;copy string from above&gt;&#39;</span>
 </pre></div>
 <p>If this file doesn't exist, you can generate it by doing:</p>
 <div class="highlight"><pre><span></span>jupyter notebook --generate-config
 </pre></div>
-<h4 id="Remote-kernels">Remote kernels<a class="anchor-link" href="#Remote-kernels">&#182;</a></h4><p>I ran across this package for creating remote kernels directly, without having to fuss with SSH tunneling (it actually does it for you, for the most part.) I've only tried it very briefly, so your mileage may vary. It's pretty simple to setup:</p>
-<div class="highlight"><pre><span></span>pip install --user remote_ikernel
+</li>
+<li><p>Create an SSH key</p>
+<p>You will need to be able to login to the remote server with an SSH key. This allows you to create SSH tunnels without needing to enter your password each time.</p>
+<p>A great tutorial for this is here: <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2">https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2</a> (steps 1-3)</p>
+</li>
+<li><p>Setup AutoSSH</p>
+<p>This tool helps keep an SSH tunnel open between your machine and the server.</p>
+<div class="highlight"><pre><span></span><span class="c1"># For Linux (if you&#39;re on your own linux machine, not our servers)</span>
+ sudo apt-get install autossh
+
+ <span class="c1"># For OSX</span>
+ brew install autossh
+
+ <span class="c1"># For Windows</span>
+ <span class="c1"># Use cygwin - the package manager has autossh. </span>
+
+ <span class="c1"># If none of those are options, follow the instructions to build the source</span>
+ <span class="c1"># code directly at: http://www.harding.motd.ca/autossh/</span>
 </pre></div>
-<p>And then add a remote kernel, for example on snowwhite:</p>
-<div class="highlight"><pre><span></span>remote_ikernel manage --add <span class="se">\</span>
-    --kernel_cmd<span class="o">=</span><span class="s2">&quot;ipython kernel -f {connection_file}&quot;</span> <span class="se">\</span>
-    --name<span class="o">=</span><span class="s2">&quot;Python (snowwhite)&quot;</span> --interface<span class="o">=</span>ssh <span class="se">\</span>
-    --host<span class="o">=</span>welchr@snowwhite.sph.umich.edu
+<p>Create the SSH tunnel:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Choose a random number 1024 &lt; x &lt; 65535. For example, 21325. </span>
+ <span class="c1"># 21325 will be the monitoring port autossh uses to make sure the connection is still alive.</span>
+ <span class="c1"># 5656 is the default jupyter notebook server port</span>
+ autossh -M <span class="m">21325</span> -f -i ~/.ssh/id_rsa -N -L <span class="m">5656</span>:localhost:5656 user@machine.sph.umich.edu
 </pre></div>
-<p>Now, when you go to create a new notebook, you should see your remote kernel in the list.</p>
-<p>For more info on remote kernels:</p>
-<p><a href="https://pypi.python.org/pypi/remote_ikernel">https://pypi.python.org/pypi/remote_ikernel</a></p>
+</li>
+<li><p>Run the jupyter notebook on the server</p>
+<p>Connect to the server (snowwhite, dumbo, etc.) and run:</p>
+<div class="highlight"><pre><span></span>jupyter notebook --no-browser <span class="p">&amp;</span>
+</pre></div>
+</li>
+<li><p>Open your local browser</p>
+<p>Open Chrome or Safari on your computer and enter the address <code>http://localhost:5656/</code>.</p>
+<p>You may get a warning about SSL certificates / safety - this is one of those rare instances where it is OK to ignore - hit "Advanced" at the bottom and then "Proceed anyway." Your connection is encrypted via SSH.</p>
+</li>
+</ol>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12018,8 +12016,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12027,8 +12024,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12037,8 +12033,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12046,8 +12041,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12058,8 +12052,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12067,8 +12060,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12096,8 +12088,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12107,8 +12098,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12118,8 +12108,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12133,7 +12122,7 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="o">*</span>
 <span class="n">init_printing</span><span class="p">(</span><span class="n">use_latex</span><span class="o">=</span><span class="s1">&#39;mathjax&#39;</span><span class="p">)</span>
 
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x y&quot;</span><span class="p">)</span>
@@ -12148,7 +12137,11 @@ autossh -M <span class="m">21325</span> -f -i .ssh/id_rsa -N -L 8888:localhost:8
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[2]:</div>
+
+
 
 
 <div class="output_latex output_subarea output_execute_result">
@@ -12161,8 +12154,7 @@ $$\left [ - i \sqrt{- \frac{1}{2} + \frac{\sqrt{5}}{2}}, \quad i \sqrt{- \frac{1
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12176,7 +12168,7 @@ $$\left [ - i \sqrt{- \frac{1}{2} + \frac{\sqrt{5}}{2}}, \quad i \sqrt{- \frac{1
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">m11</span><span class="p">,</span> <span class="n">m12</span><span class="p">,</span> <span class="n">m21</span><span class="p">,</span> <span class="n">m22</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;m11, m12, m21, m22&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m11</span><span class="p">,</span> <span class="n">m12</span><span class="p">,</span> <span class="n">m21</span><span class="p">,</span> <span class="n">m22</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;m11, m12, m21, m22&quot;</span><span class="p">)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="n">m11</span><span class="p">,</span> <span class="n">m12</span><span class="p">],[</span><span class="n">m21</span><span class="p">,</span> <span class="n">m22</span><span class="p">]])</span>
 
 <span class="n">A</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
@@ -12190,7 +12182,11 @@ $$\left [ - i \sqrt{- \frac{1}{2} + \frac{\sqrt{5}}{2}}, \quad i \sqrt{- \frac{1
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[3]:</div>
+
+
 
 
 <div class="output_latex output_subarea output_execute_result">
@@ -12203,8 +12199,7 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12212,8 +12207,7 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12227,9 +12221,9 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 <div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Enter code into a cell, and see the output after it. </span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-  <span class="k">print</span> <span class="n">i</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Enter code into a cell, and see the output after it. </span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+  <span class="nb">print</span> <span class="n">i</span>
 </pre></div>
 
 </div>
@@ -12240,7 +12234,11 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0
 1
@@ -12255,8 +12253,7 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12270,7 +12267,7 @@ $$\left[\begin{matrix}\frac{1}{m_{11}} + \frac{m_{12} m_{21}}{m_{11}^{2} \left(m
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>%%bash 
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash 
 ls -l
 </pre></div>
 
@@ -12282,7 +12279,11 @@ ls -l
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>total 4748
 -rw-r----- 1 welchr welchr    4359 Jun  2 10:57 basic_noin.tpl
@@ -12309,7 +12310,7 @@ ls -l
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">html</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
 &lt;style&gt;
 
 .double {
@@ -12331,7 +12332,11 @@ ls -l
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 
 <div class="output_html rendered_html output_subarea ">
 <style>
@@ -12358,7 +12363,7 @@ ls -l
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
 
 <span class="c1">// An example of generating browser notifications. </span>
 <span class="c1">// Uncomment everything below and execute to see it in action. </span>
@@ -12407,14 +12412,18 @@ ls -l
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
 
 
 
-<div id="d708fc3c-899d-47fb-b0a4-f262b7362a94"></div>
+
+
+<div id="6df288a8-06e6-4e4f-b95c-b984b126bd8e"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#d708fc3c-899d-47fb-b0a4-f262b7362a94');
+var element = $('#6df288a8-06e6-4e4f-b95c-b984b126bd8e');
 
 // An example of generating browser notifications. 
 // Uncomment everything below and execute to see it in action. 
@@ -12467,7 +12476,7 @@ var element = $('#d708fc3c-899d-47fb-b0a4-f262b7362a94');
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># # Call javascript code from python</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># # Call javascript code from python</span>
 <span class="c1"># jscode = &quot;&quot;&quot;</span>
 <span class="c1"># notify(&quot;Calling javascript notification from python&quot;,&quot;Test&quot;)</span>
 <span class="c1"># &quot;&quot;&quot;</span>
@@ -12481,8 +12490,7 @@ var element = $('#d708fc3c-899d-47fb-b0a4-f262b7362a94');
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12495,7 +12503,7 @@ var element = $('#d708fc3c-899d-47fb-b0a4-f262b7362a94');
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Before we get started with some actual code, turn off a few annoying warning messages that aren&#39;t relevant to the tutorial. </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Before we get started with some actual code, turn off a few annoying warning messages that aren&#39;t relevant to the tutorial. </span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span><span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
 </pre></div>
@@ -12505,8 +12513,7 @@ var element = $('#d708fc3c-899d-47fb-b0a4-f262b7362a94');
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12514,8 +12521,7 @@ var element = $('#d708fc3c-899d-47fb-b0a4-f262b7362a94');
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12523,8 +12529,7 @@ var element = $('#d708fc3c-899d-47fb-b0a4-f262b7362a94');
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12538,10 +12543,10 @@ var element = $('#d708fc3c-899d-47fb-b0a4-f262b7362a94');
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kendalltau</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">kendalltau</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
 
 <span class="n">rs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
@@ -12559,7 +12564,11 @@ var element = $('#d708fc3c-899d-47fb-b0a4-f262b7362a94');
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
@@ -13194,8 +13203,7 @@ IiIiqXAwERGRVDiYiIhIKhxMREQkFQ4mIiKSym8lSKKM/kKVngAAAABJRU5ErkJggg==
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13203,8 +13211,7 @@ IiIiqXAwERGRVDiYiIhIKhxMREQkFQ4mIiKSym8lSKKM/kKVngAAAABJRU5ErkJggg==
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13219,12 +13226,12 @@ IiIiqXAwERGRVDiYiIhIKhxMREQkFQ4mIiKSym8lSKKM/kKVngAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># This just keeps the &quot;Warning: BokehJS previously loaded&quot; message from appearing. </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This just keeps the &quot;Warning: BokehJS previously loaded&quot; message from appearing. </span>
 <span class="k">try</span><span class="p">:</span>
   <span class="n">bokeh</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">Figure</span>
 <span class="k">except</span><span class="p">:</span>
   <span class="kn">import</span> <span class="nn">bokeh</span>
-  <span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="o">*</span>
+  <span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="k">import</span> <span class="o">*</span>
   <span class="n">output_notebook</span><span class="p">()</span>
 </pre></div>
 
@@ -13236,7 +13243,11 @@ IiIiqXAwERGRVDiYiIhIKhxMREQkFQ4mIiKSym8lSKKM/kKVngAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 
 <div class="output_html rendered_html output_subarea ">
 
@@ -13248,14 +13259,18 @@ IiIiqXAwERGRVDiYiIhIKhxMREQkFQ4mIiKSym8lSKKM/kKVngAAAABJRU5ErkJggg==
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
 
 
 
-<div id="b0691d1d-62c3-47bc-99f5-0483445a65f8"></div>
+
+
+<div id="33f7a374-23b4-4b2e-98f5-38f951ef502d"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
+var element = $('#33f7a374-23b4-4b2e-98f5-38f951ef502d');
 
 (function(global) {
   function now() {
@@ -13352,13 +13367,13 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">HoverTool</span><span class="p">,</span> <span class="n">ColumnDataSource</span>
-<span class="kn">from</span> <span class="nn">bokeh.sampledata.les_mis</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="k">import</span> <span class="n">HoverTool</span><span class="p">,</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.les_mis</span> <span class="k">import</span> <span class="n">data</span>
 
 <span class="n">nodes</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;nodes&#39;</span><span class="p">]</span>
 <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;nodes&#39;</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">])]</span>
@@ -13409,11 +13424,11 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <span class="n">p</span><span class="o">.</span><span class="n">plot_height</span> <span class="o">=</span> <span class="mi">800</span>
 
 <span class="n">p</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="s1">&#39;xname&#39;</span><span class="p">,</span> <span class="s1">&#39;yname&#39;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
-     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="s1">&#39;alphas&#39;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="s1">&#39;alphas&#39;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
-<span class="n">p</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">grid_line_color</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">axis_line_color</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">major_tick_line_color</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">p</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">grid_line_color</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">axis_line_color</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">major_tick_line_color</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">major_label_text_font_size</span> <span class="o">=</span> <span class="s2">&quot;10pt&quot;</span>
 <span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">major_label_standoff</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">p</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">major_label_orientation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span>
@@ -13435,7 +13450,11 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 
 <div class="output_html rendered_html output_subarea ">
 
@@ -13539,10 +13558,10 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">bokeh.sampledata.glucose</span> <span class="kn">import</span> <span class="n">data</span>
-<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.glucose</span> <span class="k">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="k">import</span> <span class="o">*</span>
 
 <span class="n">TOOLS</span> <span class="o">=</span> <span class="s2">&quot;crosshair,pan,wheel_zoom,box_zoom,reset,save,hover&quot;</span>
 
@@ -13576,7 +13595,7 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <span class="n">p2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">lows</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lows</span><span class="p">[</span><span class="s1">&#39;glucose&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;navy&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="n">low_source</span><span class="p">)</span>
 
 <span class="n">p2</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Glucose Range&quot;</span>
-<span class="n">p2</span><span class="o">.</span><span class="n">xgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid_line_color</span><span class="o">=</span><span class="bp">None</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">xgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid_line_color</span><span class="o">=</span><span class="kc">None</span>
 <span class="n">p2</span><span class="o">.</span><span class="n">ygrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid_line_alpha</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="n">p2</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Time&#39;</span>
 <span class="n">p2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">axis_label</span> <span class="o">=</span> <span class="s1">&#39;Value&#39;</span>
@@ -13598,7 +13617,11 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 
 <div class="output_html rendered_html output_subarea ">
 
@@ -13697,8 +13720,7 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13706,8 +13728,7 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13720,7 +13741,7 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> rpy2.ipython
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> rpy2.ipython
 </pre></div>
 
 </div>
@@ -13733,7 +13754,7 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Make a fake dataset. </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Make a fake dataset. </span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
 </pre></div>
 
@@ -13742,8 +13763,7 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13757,7 +13777,7 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># The dataset</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The dataset</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -13769,7 +13789,11 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[16]:</div>
+
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -13848,7 +13872,7 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Shove the data into R</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Shove the data into R</span>
 <span class="o">%</span><span class="k">Rpush</span> df
 </pre></div>
 
@@ -13862,7 +13886,7 @@ var element = $('#b0691d1d-62c3-47bc-99f5-0483445a65f8');
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span>R
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span>R
 <span class="kn">library</span><span class="p">(</span>lattice<span class="p">)</span>
 <span class="c1"># Create a lattice plot. </span>
 
@@ -13883,7 +13907,11 @@ trellis.par.set<span class="p">(</span><span class="s">&quot;fontsize&quot;</spa
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 
 
 <div class="output_png output_subarea ">
@@ -14041,8 +14069,7 @@ AAAAAElFTkSuQmCC
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14050,8 +14077,7 @@ AAAAAElFTkSuQmCC
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14099,8 +14125,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14108,8 +14133,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14123,7 +14147,7 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="o">*</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="o">*</span>
 
 <span class="n">Image</span><span class="p">(</span><span class="s2">&quot;images_etv5.png&quot;</span><span class="p">)</span>
 </pre></div>
@@ -14136,7 +14160,11 @@ IRdisplay::display_html(repr_html(x))</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[19]:</div>
+
+
 
 
 <div class="output_png output_subarea output_execute_result">
@@ -14550,8 +14578,7 @@ A3ICAADgcUBOAAAAPIyOjv8fjP0na/5DM8cAAAAASUVORK5CYII=
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14559,8 +14586,7 @@ A3ICAADgcUBOAAAAPIyOjv8fjP0na/5DM8cAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14568,8 +14594,7 @@ A3ICAADgcUBOAAAAPIyOjv8fjP0na/5DM8cAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14578,8 +14603,7 @@ A3ICAADgcUBOAAAAPIyOjv8fjP0na/5DM8cAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14587,8 +14611,7 @@ A3ICAADgcUBOAAAAPIyOjv8fjP0na/5DM8cAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14614,8 +14637,7 @@ A3ICAADgcUBOAAAAPIyOjv8fjP0na/5DM8cAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14623,8 +14645,7 @@ A3ICAADgcUBOAAAAPIyOjv8fjP0na/5DM8cAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14639,12 +14660,12 @@ A3ICAADgcUBOAAAAPIyOjv8fjP0na/5DM8cAAAAASUVORK5CYII=
 <p>Now that you've run your notebook, and the results are saved, you could convert the output into a report:</p>
 <div class="highlight"><pre><span></span>jupyter nbconvert --to html --template full_noin &lt;notebook file&gt;
 </pre></div>
+<p><strong>In general</strong> it is advisable to isolate long running code as separate scripts/jobs, and then import the results of those jobs into your notebook for display and visualization.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14652,8 +14673,7 @@ A3ICAADgcUBOAAAAPIyOjv8fjP0na/5DM8cAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14693,16 +14713,20 @@ define(['base/js/namespace','base/js/events'], function(IPython, events) {
 </pre></div>
 <p><strong>Can I make the notebook wider in my browser?</strong></p>
 <p>Add the following to your custom CSS file <code>~/.jupyter/custom/custom.css</code>:</p>
-<div class="highlight"><pre><span></span><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nb">width</span><span class="o">:</span> <span class="m">1400px</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">1400</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p>Or to make it a percent of total width:</p>
+<div class="highlight"><pre><span></span><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">95</span><span class="kt">%</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14710,8 +14734,7 @@ define(['base/js/namespace','base/js/events'], function(IPython, events) {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -14724,10 +14747,10 @@ define(['base/js/namespace','base/js/events'], function(IPython, events) {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
 
 <span class="nx">requirejs</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
   <span class="nx">enforceDefine</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -14785,14 +14808,18 @@ define(['base/js/namespace','base/js/events'], function(IPython, events) {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
 
 
 
-<div id="431fccbf-ec65-4281-bb52-64e199d19813"></div>
+
+
+<div id="9ac6078c-e380-4d5e-9952-8d5521132680"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#431fccbf-ec65-4281-bb52-64e199d19813');
+var element = $('#9ac6078c-e380-4d5e-9952-8d5521132680');
 
 requirejs.config({
   enforceDefine: true,
@@ -14854,7 +14881,7 @@ require(["lodash","underscore.string"],function(_,_s) {
 <div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
 
 <span class="c1">// Some quick javascript for getting rid of the red STDERR message boxes on the page. </span>
 
@@ -14878,14 +14905,18 @@ require(["lodash","underscore.string"],function(_,_s) {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
 
 
 
-<div id="17ca997b-8a72-441a-97b6-9010f0159482"></div>
+
+
+<div id="ab875b01-b3a2-49db-b00f-5ecddaeec8ff"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#17ca997b-8a72-441a-97b6-9010f0159482');
+var element = $('#ab875b01-b3a2-49db-b00f-5ecddaeec8ff');
 
 // Some quick javascript for getting rid of the red STDERR message boxes on the page. 
 
@@ -14911,4 +14942,8 @@ var element = $('#17ca997b-8a72-441a-97b6-9010f0159482');
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>
