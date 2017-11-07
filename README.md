@@ -32,10 +32,10 @@ try it yourself.
 ## Quick views of notebook output
 
 [Rendered output (including code
-cells)](https://rawcdn.githack.com/welchr/csg-jupyter-tutorial/master/csg_jupyter_tutorial.html)
+cells)](http://welchr.github.io/csg-jupyter-tutorial/csg_jupyter_tutorial.html)
 
 [Rendered output (no code
-cells)](https://rawcdn.githack.com/welchr/csg-jupyter-tutorial/master/csg_jupyter_tutorial_nocode.html)
+cells)](http://welchr.github.io/csg-jupyter-tutorial/csg_jupyter_tutorial_nocode.html)
 
 ## Creating HTML from notebook
 
